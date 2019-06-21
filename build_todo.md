@@ -1,0 +1,11 @@
+# TODO
+-Check if we can fetch the information in the "Edit" part with BuildHelpers (see below)
+-publish release to github
+-Make this file appraoch easily clonable
+-Improve agnostic approach so it can work on any CI
+-Minimalize files present in the root, possibly move build.ps1 ?
+-Make the Build script flexible so we can call different tasks at different stages (build, deploy, tests..)
+-Speed up dependencies installation
+-Add more verbose/output messages
+-Use invokebuild header ?
+-Documentation automation
