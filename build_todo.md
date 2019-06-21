@@ -9,3 +9,4 @@
 -Add more verbose/output messages
 -Use invokebuild header ?
 -Documentation automation
+-add simple gitpitch
