@@ -14,3 +14,5 @@
 -more pester tests
 -tag pester tests
 -separate build and deploy steps in CI
+-test on ps core
+-test on linux
