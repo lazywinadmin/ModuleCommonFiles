@@ -31,7 +31,7 @@ task -Name build {
         Get-Content -Path $($file.fullname) |
             Out-File -FilePath "$modulePath\$moduleName.psm1" -Append -Encoding utf8
     }
-    
+
     # Append existing PSM1 content from source
     if(Test-Path -Path "$srcPath\source.psm1")
     {
@@ -66,10 +66,9 @@ task -Name build {
 task -Name clean {
     # Output folder
     Remove-Item -confirm:$false -Recurse -path $buildOutputPath -ErrorAction SilentlyContinue
-    #Remove-Item -confirm:$false -Recurse -path $dependenciesPath -ErrorAction SilentlyContinue
-    dir env:bh*|remove-item
-    dir env:modulename|remove-item
-    dir env:modulepath|remove-item
+
+    # Delete env variables created
+    Get-ChildItem -Path env:modulepath,env:modulename,env:bh* -ErrorAction SilentlyContinue | remove-item
 }
 
 task -Name deploy {
@@ -78,6 +77,26 @@ task -Name deploy {
 
 task -Name test {
     # Run test build
-    #Invoke-Pester -Path $TestPath -OutputFormat NUnitXml -OutputFile "$buildOutputPath\$testResult" -PassThru
-    Invoke-Pester -Script @{ Path =  $TestPath; Parameters = @{moduleName = $moduleName; modulePath = $modulePath} } -OutputFormat NUnitXml -OutputFile "$buildOutputPath\$testResult" -PassThru
+    $PesterParams = @{
+        Script          = @{
+            Path = $TestPath;
+            Parameters = @{
+                moduleName = $moduleName;
+                modulePath = $modulePath;
+                srcPath = $srcPath;
+                }
+            }
+        OutputFormat    = 'NUnitXml'
+        OutputFile      = "$buildOutputPath\$testResult"
+        PassThru        = $true
+        #Show            = 'Failed', 'Fails', 'Summary'
+        #Tags            = 'Build'
+    }
+
+    $results = Invoke-Pester @PesterParams
+
+    if($results.FailedCount -gt 0)
+    {
+        throw "Failed [$($results.FailedCount)] Pester tests."
+    }
 }
