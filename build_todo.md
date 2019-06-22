@@ -10,3 +10,7 @@
 -Use invokebuild header ?
 -Documentation automation
 -add simple gitpitch
+-add more verbose messages
+-more pester tests
+-tag pester tests
+-separate build and deploy steps in CI
