@@ -1,6 +1,6 @@
 # TODO
 -Check if we can fetch the information in the "Edit" part with BuildHelpers (see below)
--publish release to github
+-publish release to github (see buildhelpers module)
 -Make this file appraoch easily clonable
 -Improve agnostic approach so it can work on any CI
 -Minimalize files present in the root, possibly move build.ps1 ?
@@ -16,3 +16,5 @@
 -separate build and deploy steps in CI
 -test on ps core
 -test on linux
+-Tag commits with version
+-Maintain a ChangLog automatically based on Git metadata ?
