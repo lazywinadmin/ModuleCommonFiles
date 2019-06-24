@@ -20,6 +20,7 @@ Param(
 try{
     ################
     # EDIT THIS PART
+    $guid = '<guid here>'
     $moduleName = "SpaceX" # get from source control or module ?
     $author = 'Francois-Xavier Cat' # fetch from source or module
     $description = 'SpaceX is a module wrapped around the spacex API (github.com/r-spacex/SpaceX-API)' # fetch from module ?

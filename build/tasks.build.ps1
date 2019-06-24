@@ -47,6 +47,7 @@ task -Name build {
     $moduleVersion = Get-NextNugetPackageVersion -Name $moduleName
 
     $moduleManifestData = @{
+        Guid = $Guid
         Author = $author
         Description = $Description
         Copyright = "(c) $((Get-Date).year) $author. All rights reserved."
