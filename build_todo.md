@@ -18,3 +18,4 @@
 -test on linux
 -Tag commits with version
 -Maintain a ChangLog automatically based on Git metadata ?
+-Sign Module ?
