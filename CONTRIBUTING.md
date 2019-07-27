@@ -49,3 +49,7 @@ If you have additional questions about contributing, please open a GitHub issue 
 ## Code Style
 
 I write all my PowerShell code according to the [PowerShell Best Practices and Style Guide](https://github.com/PoshCode/PowerShellPracticeAndStyle), so any contributions will be altered to match this style if they do not already follow it.
+
+## Notes
+
+This page was created based mostly on [Nate Contributing page](https://github.com/natescherer/ChangelogManagement/blob/master/CONTRIBUTING.md). Thank you !
