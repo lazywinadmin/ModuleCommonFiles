@@ -1,4 +1,8 @@
 # TODO
+-bootStrap the module using a script to update Build.ps1, Pester tests, Build tasks
+  -Another option is to store the metadata of the module in a file at the root
+-Find a way to be able to invoke the Pester tests without the build.ps1
+    Kind of tough without the module being built :-/
 -Add more badges
    -Code coverage:
         https://github.com/natescherer/ChangelogManagement
