@@ -9,3 +9,5 @@ ModuleCommonFiles
 ## Usage
 
 ## Contributions
+
+Please read the [CONTRIBUTING markdown file](CONTRIBUTING.md).
