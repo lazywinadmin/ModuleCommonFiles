@@ -43,8 +43,9 @@ try{
     $env:moduleName = $moduleName
     $env:modulePath = $modulePath
 
-    $requirementsFilePath = "$buildPath\requirements.psd1" # contains dependencies
-    $buildTasksFilePath = "$buildPath\tasks.build.ps1" # contains tasks to execute
+    $buildRequirementsFilePath = "$buildPath\build.psdepend.psd1" # contains dependencies/requirements
+    $buildTasksFilePath = "$buildPath\build.tasks.ps1" # contains tasks to execute
+    $buildPSDeployFilePath = "$buildPath\build.psdeploy.ps1" # contains dependencies/requirements
 
     if($InstallDependencies)
     {
@@ -61,6 +62,9 @@ try{
             $null = Install-PackageProvider @providerBootstrapParams
             Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
         }
+
+        # (Test)Install
+
 
         if (-not(Get-Module -Listavailable -Name PSDepend)) {
             Write-verbose "BootStrapping PSDepend"
@@ -82,7 +86,7 @@ try{
         # Install module dependencies with PSDepend
         $PSDependParams = @{
             Force = $true
-            Path = $requirementsFilePath
+            Path = $buildRequirementsFilePath
         }
         if($PSBoundParameters['verbose']) { $PSDependParams.add('verbose',$verbose)}
         Invoke-PSDepend @PSDependParams -Target $dependenciesPath
