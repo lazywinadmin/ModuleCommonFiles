@@ -31,21 +31,23 @@ try{
     ################
 
     #$rootpath = Split-Path -path $PSScriptRoot -parent
-    $rootpath = $PSScriptRoot
-    $buildOutputPath = "$rootpath\buildoutput"
-    $buildPath = "$rootpath\build"
-    $srcPath = "$rootpath\src"
-    $testPath = "$rootpath\tests"
-    $modulePath = "$buildoutputPath\$moduleName"
-    $dependenciesPath = "$rootpath\dependencies" # folder to store modules
-    $testResult = "Test-Results.xml"
+    $rootpath = $PSScriptRoot                       # \             -- root of the project
+    $buildOutputPath = "$rootpath\buildoutput"      # \buildoutput  -- final module format folder location and tests results files
+    $buildPath = "$rootpath\build"                  # \build        -- scripts used to build the module
+    $srcPath = "$rootpath\src"                      # \src          -- source files such as Public/Private etc...
+    $testPath = "$rootpath\tests"                   # \tests        -- Pester tests
+    $modulePath = "$buildoutputPath\$moduleName"    # \buildoutput\<modulename> -- final module format
+    $dependenciesPath = "$rootpath\dependencies"    # \dependencies -- folder to store modules
 
     $env:moduleName = $moduleName
     $env:modulePath = $modulePath
 
     $buildRequirementsFilePath = "$buildPath\build.psdepend.psd1" # contains dependencies/requirements
     $buildTasksFilePath = "$buildPath\build.tasks.ps1" # contains tasks to execute
-    $buildPSDeployFilePath = "$buildPath\build.psdeploy.ps1" # contains dependencies/requirements
+    $buildPSDeployFilePath = "$buildPath\build.psdeploy.ps1" # contains deployment info used by psdeploy
+    $buildPSScriptAnalyzerSettingsFilePath = "$buildPath\build.scriptanalyzersettings.psd1" # contains deployment info used by psdeploy
+
+    $buildOutputTestResultFilePath = "$buildoutputPath\Test-Results.xml"
 
     if($InstallDependencies)
     {
