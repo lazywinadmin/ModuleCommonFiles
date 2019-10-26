@@ -71,7 +71,8 @@ task -Name clean {
     Remove-Item -confirm:$false -Recurse -path $buildOutputPath -ErrorAction SilentlyContinue
 
     # Delete env variables created
-    Get-ChildItem -Path env:modulepath,env:modulename,env:bh* -ErrorAction SilentlyContinue | remove-item
+    Get-ChildItem -Path env:modulepath,env:modulename,env:bh* -ErrorAction SilentlyContinue |
+        Remove-Item
 }
 
 task -Name deploy {
@@ -90,7 +91,7 @@ task -Name test {
                 }
             }
         OutputFormat    = 'NUnitXml'
-        OutputFile      = "$buildOutputPath\$testResult"
+        OutputFile      = $buildOutputTestResultFilePath
         PassThru        = $true
         #Show            = 'Failed', 'Fails', 'Summary'
         #Tags            = 'Build'
@@ -109,7 +110,7 @@ task -name analyze {
     $PSScriptAnalyzerParams = @{
         IncludeDefaultRules = $true
         Path                = "$modulePath" # $ModuleName.psd1"
-        Settings            = "$buildPath\ScriptAnalyzerSettings.psd1"
+        Settings            = $buildPSScriptAnalyzerSettingsFilePath
         Severity            = 'Warning','Error'
         Recurse             = $true
     }
