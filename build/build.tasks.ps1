@@ -4,8 +4,7 @@ task -Name nothing {
 }
 
 task -Name setEnvironment {
-    # Run test build
-    # Read the current environment, populate env vars
+    # Set the current environment, populate env vars
     Set-BuildEnvironment -Path $rootpath
 
     # Read back the env vars
@@ -14,7 +13,6 @@ task -Name setEnvironment {
 }
 
 task -Name build {
-    Write-Verbose -Message "Task: Build"
     # Retrieve public functions
     $publicFiles = @(Get-ChildItem -Path $srcPath\public\*.ps1 -ErrorAction SilentlyContinue)
     # Retrieve private functions
@@ -23,7 +21,7 @@ task -Name build {
     # Create build output directory if does not exist yet
     if(-not (Test-Path -path $modulePath))
     {
-        New-Item -Path $modulePath -ItemType Directory
+        [void](New-Item -Path $modulePath -ItemType Directory)
     }
 
     # Build PSM1 file with all the functions
