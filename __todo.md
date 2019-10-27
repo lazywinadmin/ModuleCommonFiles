@@ -1,4 +1,12 @@
 # TODO
+
+## High
+
+-test on ps core
+-test on linux
+
+## back log
+
 -bootStrap the module using a script to update Build.ps1, Pester tests, Build tasks
   -Another option is to store the metadata of the module in a file at the root
 -Find a way to be able to invoke the Pester tests without the build.ps1
@@ -27,8 +35,6 @@
 -more pester tests
 -tag pester tests
 -separate build and deploy steps in CI
--test on ps core
--test on linux
 -Tag commits with version
 -Maintain a ChangLog automatically based on Git metadata ?
 -Sign Module ?
