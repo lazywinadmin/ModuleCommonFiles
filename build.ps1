@@ -93,10 +93,11 @@ try{
         if($PSBoundParameters['verbose']) { $PSDependParams.add('verbose',$verbose)}
         Invoke-PSDepend @PSDependParams -Target $dependenciesPath
         Write-Verbose -Message "Project Bootstrapped"
+    }else{
+        Write-Verbose -Message "Skip InstallDependencies"
     }
 
     # Start build using InvokeBuild module
-    Write-Verbose -Message "Start Build"
     Invoke-Build -Result 'Result' -File $buildTasksFilePath -Task $tasks
 
     # Return error to CI
