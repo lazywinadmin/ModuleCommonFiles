@@ -47,7 +47,7 @@ try{
     $buildPSDeployFilePath = "$buildPath\build.psdeploy.ps1" # contains deployment info used by psdeploy
     $buildPSScriptAnalyzerSettingsFilePath = "$buildPath\build.scriptanalyzersettings.psd1" # contains deployment info used by psdeploy
 
-    $buildOutputTestResultFilePath = "$buildoutputPath\Test-Results.xml"
+    $buildOutputTestResultFilePath = "$buildoutputPath\test-results.xml"
 
     if($InstallDependencies)
     {
