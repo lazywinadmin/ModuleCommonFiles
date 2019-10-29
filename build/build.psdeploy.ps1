@@ -3,6 +3,8 @@
     $env:modulePath is set in the build.ps1
     $env:moduleName is set in the build.ps1
     $ENV:BH* are set by the BuildHelpers module
+
+    https://psdeploy.readthedocs.io/en/latest/PSDeploy-Configuration-Files/
 #>
 if(
     $env:modulePath -and
