@@ -1,0 +1,70 @@
+# https://aka.ms/yaml
+# https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema
+
+trigger:
+- master
+resources:
+- repo: self
+variables:
+  - group: psgallery
+
+# TEST
+stages:
+- stage: test
+  jobs:
+    # windows-latest
+    - job: testing_windows_latest_windowspowershell
+      pool:
+        vmImage: windows-latest
+      steps:
+      - template: build/templates/powershell_build.yml
+        parameters:
+          tasks: 'build,test,clean'
+          os: windows-latest
+      - template: build/templates/publishtest.yml
+
+    # windows core 1803
+    - job: testing_wincore1803
+      pool:
+        vmImage: win1803
+      steps:
+      - template: build/templates/powershell_build.yml
+        parameters:
+          tasks: 'build,test,clean'
+          os: win1803
+      - template: build/templates/publishtest.yml
+
+    # ubuntu-latest
+    - job: testing_ubuntu_latest
+      pool:
+        vmImage: ubuntu-latest
+      steps:
+        - template: build/templates/powershell_build.yml
+          parameters:
+            tasks: 'build,test,clean'
+            os: ubuntu-latest
+        - template: build/templates/publishtest.yml
+
+    # macOS-latest
+    - job: testing_macOS_latest
+      pool:
+        vmImage: macOS-latest
+      steps:
+        - template: build/templates/powershell_build.yml
+          parameters:
+            tasks: 'build,test,clean'
+            os: macOS-latest
+        - template: build/templates/publishtest.yml
+
+# DEPLOY
+- stage: deploy
+  condition: succeeded()
+  dependsOn: test
+  jobs:
+  - job: deploy
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - template: build/templates/powershell_build.yml
+      parameters:
+        tasks: 'build,deploy'
