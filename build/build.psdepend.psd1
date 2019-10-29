@@ -1,3 +1,4 @@
+# https://github.com/RamblingCookieMonster/PSDepend#flexible-syntax
 @{
     PSDependOptions = @{
         #Target = '.\dependencies'
@@ -11,6 +12,7 @@
         }
     }
     PSScriptAnalyzer = 'Latest'
+    ScriptAnalyzerRulesLWA = 'Latest'
     BuildHelpers = 'Latest'
     PSDeploy = 'Latest'
     InvokeBuild = 'Latest'
