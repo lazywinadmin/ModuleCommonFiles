@@ -6,6 +6,11 @@ ModuleCommonFiles
 
 ## Getting Started
 
+```powershell
+# Install the module from the PowerShell Gallery
+Install-Module -Name <ModuleName> -Scope CurrentUser
+```
+
 ## Usage
 
 ## Contributions
