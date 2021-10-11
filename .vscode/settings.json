@@ -9,5 +9,8 @@
     "[json]": {
       "editor.tabSize": 2
     },
-    "files.trimTrailingWhitespace": true
+    "files.trimTrailingWhitespace": true,
+    "editor.mouseWheelZoom": true,
+    "editor.guides.bracketPairs": true,
+    "editor.tabSize": 2,
 }
